@@ -46,6 +46,12 @@ describe Board do
 			expect(board.rows).to eq([["s"]*3 + [""]*7] + [empty_row]*9)
 		end
 
+		it 'should populate the board with a length 4 vertical ship at A1' do
+			length, row, column = 4, 0, 0, :down
+			board.add_ship(length, row, column, :down)
+			expect(board.rows).to eq([["s"] + [""]*9]*4 + [empty_row]*6)
+		end
+
 
 	end
 

@@ -33,8 +33,9 @@ class Board
 	def add_ship(length, row, column, direction=:right)
 		length.times do
 			@rows[row][column] = "s"
-			column += 1
-		end
+			(direction == :right) ? column += 1 : row += 1
+	end
+
 
 
 	end
