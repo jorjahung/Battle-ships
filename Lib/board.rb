@@ -2,11 +2,13 @@ class Board
 
 	COLUMNS = ("A".."J").to_a
 	ROWS = (1..10).to_a
+	SHIP_SIZES = [5,4,3,3,2]
 	
 
 	def initialize(player)
 		@player = player
 		@rows = Array.new(10) { Array.new(10, "") }
+		#populate_board
 	end
 
 	attr_reader :player
@@ -33,6 +35,16 @@ class Board
 		hidden = rows.map {|array| array.map {|x| x == "s" ? "" : x }}
 	end
 
+	def populate_board
+		coords = (0..9).to_a
+		orientations = [:right, :down]
+		SHIP_SIZES.each do |length|
+			ship_placed = false
+			while !ship_placed
+				ship_placed = add_ship(length, coords.sample, coords.sample, orientations.sample)
+			end
+		end
+	end
 	def add_ship(length, row, column, direction=:right)
 		test_row, test_column = row, column
 		maximum = (direction == :right) ? column + length : row + length
@@ -47,6 +59,7 @@ class Board
 			@rows[row][column] = "s"
 			(direction == :right) ? column += 1 : row += 1
 		end
+		true
 	end
 
 
