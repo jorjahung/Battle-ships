@@ -8,7 +8,7 @@ class Board
 	def initialize(player)
 		@player = player
 		@rows = Array.new(10) { Array.new(10, "") }
-		#populate_board
+		# populate_board
 	end
 
 	attr_reader :player
