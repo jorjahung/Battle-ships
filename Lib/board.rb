@@ -31,13 +31,13 @@ class Board
 	end
 
 	def add_ship(length, row, column, direction=:right)
+		maximum = (direction == :right) ? column + length : row + length
+		return false if maximum > 10
+
 		length.times do
 			@rows[row][column] = "s"
 			(direction == :right) ? column += 1 : row += 1
-	end
-
-
-
+		end
 	end
 
 
