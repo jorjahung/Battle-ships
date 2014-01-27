@@ -86,12 +86,19 @@ end
 			expect(board.add_ship(length, row, column)).to be_true
 		end
 
-		it 'should add a ship if fits given the direction' do 
+		it 'should not add a ship if it overlaps with another' do 
 			length, row, column = 4, 9, 0
 			board.add_ship(length, row, column, :right)
 			length, row, column = 3, 7, 0
 			board.add_ship(length, row, column, :down)
 			expect(board.rows).to eq([empty_row]*9 + [["s"]*4 + [""]*6])
+		end
+
+		it "should return false if no ship is created" do
+			length, row, column = 4, 9, 0
+			board.add_ship(length, row, column, :right)
+			length, row, column = 3, 7, 0
+			expect(board.add_ship(length, row, column, :down)).to be_false
 		end
 
 
