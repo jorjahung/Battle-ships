@@ -17,4 +17,8 @@ describe Board do
 		expect(board.register_shot("A1")).to be_true
 	end
 
+	it 'should return false if shot is not valid' do
+		expect(board.register_shot("A15")).to be_false
+	end
+
 end

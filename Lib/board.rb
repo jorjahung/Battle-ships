@@ -1,5 +1,8 @@
 class Board
 
+	COLUMNS = ("A".."J").to_a
+	ROWS = (1..10).to_a
+
 	def initialize(player)
 		@player = player
 	end
@@ -11,11 +14,10 @@ class Board
 	end
 
 	def register_shot at_coordinates
-		if ("A".."J").to_a.include?(at_coordinates[0])
-			true
-		else
-			false
-		end
+		row, col = at_coordinates[1,2].to_i, at_coordinates[0]
+		return false unless COLUMNS.include?(col) && ROWS.include?(row)
+		true
+		
 	end
 
 	def rows
