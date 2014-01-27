@@ -30,7 +30,7 @@ class Board
 
 	end
 
-	def add_ship(length, row, column)
+	def add_ship(length, row, column, direction=:right)
 		@rows[row-1][column-1] = "s"
 	end
 
