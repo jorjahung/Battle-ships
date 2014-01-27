@@ -34,8 +34,8 @@ describe Board do
 			expect(board.opponent_view).to eq([[""]*10] + [empty_row]*9)
 		end
 
-		it "Opponent's board should not show the S but show the X/O" do
-			length, row, column = 1, 1, 1
+		it "Opponent's board should not show the S but show an X" do
+			length, row, column = 1, 0, 0
 			board.add_ship(length, row, column)
 			board.register_shot("A1")
 			expect(board.opponent_view).to eq([["x"] + [""]*9] + [empty_row]*9)

@@ -21,9 +21,8 @@ class Board
 
 		column = COLUMNS.index(col)
 		row = row-1
-		@rows[row][column] = "x"
+		@rows[row][column] == "s" ?	@rows[row][column] = "x" : @rows[row][column] = "o"
 
-		
 	end
 
 	def rows
