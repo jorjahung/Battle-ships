@@ -14,7 +14,7 @@ class Board
 	end
 
 	def register_shot at_coordinates
-		row, col = at_coordinates[1,2].to_i, at_coordinates[0]
+		row, col = at_coordinates[1,2].to_i, at_coordinates[0].upcase
 		return false unless COLUMNS.include?(col) && ROWS.include?(row)
 		true
 		

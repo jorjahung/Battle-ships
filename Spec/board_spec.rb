@@ -21,4 +21,8 @@ describe Board do
 		expect(board.register_shot("A15")).to be_false
 	end
 
+	it 'should return true if shot is valid (include lowercase)' do
+		expect(board.register_shot("c9")).to be_true
+	end
+
 end
