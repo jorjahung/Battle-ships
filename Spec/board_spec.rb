@@ -34,10 +34,16 @@ describe Board do
 			expect(board.rows).to eq([["s"]+[""]*9] + [empty_row]*9)
 		end
 
-		it 'should populate the board with a length 1 ship starting at A1' do
+		it 'should populate the board with a length 1 ship starting at A10' do
 			length, row, column = 1, 1, 10
 			board.add_ship(length, row, column)
 			expect(board.rows).to eq([[""]*9 + ["s"]] + [empty_row]*9)
+		end
+
+		it 'should populate the board with a length 3 ship starting at A1' do
+			length, row, column = 1, 1, 10
+			board.add_ship(length, row, column, :right)
+			expect(board.rows).to eq([["s"]*3 + [""]*7] + [empty_row]*9)
 		end
 
 
