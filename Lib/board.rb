@@ -37,7 +37,6 @@ class Board
 		test_row, test_column = row, column
 		maximum = (direction == :right) ? column + length : row + length
 		return false if maximum > 10
-		
 
 		length.times do
 			return false if @rows[test_row][test_column] == "s"
