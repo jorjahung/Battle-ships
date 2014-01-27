@@ -3,6 +3,7 @@ require './Lib/board'
 describe Board do
 		let(:player) { double :player }
 		let(:board){ Board.new player }
+		empty_row = [""]*10
 
 	it 'should initialize with a player' do
 		expect(player).to receive(:name)
@@ -30,13 +31,13 @@ describe Board do
 		it 'should populate the board with a length 1 ship starting at A1' do
 			length, row, column = 1, 1, 1
 			board.add_ship(length, row, column)
-			expect(board.rows[0]).to eq(["s"]+[""]*9)
+			expect(board.rows).to eq([["s"]+[""]*9] + [empty_row]*9)
 		end
 
 		it 'should populate the board with a length 1 ship starting at A1' do
 			length, row, column = 1, 1, 10
 			board.add_ship(length, row, column)
-			expect(board.rows[0]).to eq([""]*9 + ["s"])
+			expect(board.rows).to eq([[""]*9 + ["s"]] + [empty_row]*9)
 		end
 
 
