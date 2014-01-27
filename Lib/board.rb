@@ -27,7 +27,7 @@ class Board
 	end
 
 	def opponent_view
-
+		hidden = rows.map {|array| array.map {|x| x == "s" ? "" : x }}
 	end
 
 	def add_ship(length, row, column)

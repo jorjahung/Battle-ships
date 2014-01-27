@@ -26,6 +26,16 @@ describe Board do
 		expect(board.register_shot("c9")).to be_true
 	end
 
+	context "Opponent's board" do
+
+		it "Opponent's board should not show the S" do
+			length, row, column = 1, 1, 1
+			board.add_ship(length, row, column)
+			expect(board.opponent_view).to eq([[""]*10] + [empty_row]*9)
+		end
+
+end
+
 	context "Populating player board" do
 
 		it 'should populate the board with a length 1 ship starting at A1' do
