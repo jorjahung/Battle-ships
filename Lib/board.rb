@@ -22,8 +22,8 @@ class Board
 		return false unless COLUMNS.include?(col) && ROWS.include?(row)
 
 		column = COLUMNS.index(col)
-		row = row-1
-		@rows[row][column] == "s" ?	@rows[row][column] = "x" : @rows[row][column] = "o"
+		row = ROWS.index(row)
+		@rows[row][column] == "s" || @rows[row][column] == "x"?	@rows[row][column] = "x" : @rows[row][column] = "o"
 
 	end
 
