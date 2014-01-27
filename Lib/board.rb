@@ -30,8 +30,14 @@ class Board
 		hidden = rows.map {|array| array.map {|x| x == "s" ? "" : x }}
 	end
 
-	def add_ship(length, row, column)
-		@rows[row-1][column-1] = "s"
+	def add_ship(length, row, column, direction=:right)
+		length.times do
+			@rows[row][column] = "s"
+			(direction == :right) ? column += 1 : row += 1
+	end
+
+
+
 	end
 
 
