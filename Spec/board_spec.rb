@@ -25,9 +25,25 @@ describe Board do
 		expect(board.register_shot("c9")).to be_true
 	end
 
-	it 'should initialize with an empty board' do 
-		expect(board.grid).to eq([[""]*10]*10)
+	context "Populating player board" do
 		
+
+		it 'should populate the board with a length 1 ship starting at A1' do
+			length, row, column = 1, 1, 1
+			board.add_ship(length, row, column)
+			expect(board.rows[0]).to eq(["s"]+[""]*9)
+		end
+
+		it 'should populate the board with a length 1 ship starting at A1' do
+			length, row, column = 1, 1, 10
+			board.add_ship(length, row, column)
+			expect(board.rows[0]).to eq([""]*9 + ["s"])
+		end
+
+
 	end
+
+
+
 
 end

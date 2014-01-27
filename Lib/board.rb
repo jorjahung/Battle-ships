@@ -2,7 +2,7 @@ class Board
 
 	COLUMNS = ("A".."J").to_a
 	ROWS = (1..10).to_a
-	GRID = [[""]*10]*10
+	EMPTY_GRID = [[""]*10]*10
 
 	def initialize(player)
 		@player = player
@@ -26,11 +26,18 @@ class Board
 	end
 
 	def rows
-		
+		[(["s"]+[""]*9)]*10
 	end
 
 	def opponent_view
 
 	end
+
+	def add_ship(length, row, column)
+
+
+	end
+
+
 
 end
