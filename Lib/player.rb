@@ -5,10 +5,7 @@ class Player
 		@board.populate_board
 	end
 
-	attr_accessor :board
-	def name
-		@name
-	end
+	attr_reader :board, :name
 
 	def has_ships_still_floating?
 		board.rows.flatten.include?("s")

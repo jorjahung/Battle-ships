@@ -60,45 +60,40 @@ end
 
 	context "Populating player board" do
 
-		context "empty board" do
+		it 'should populate the board with a length 1 ship starting at A1' do
+			length, row, column = 1, 0, 0
+			board.add_ship(length, row, column)
+			expect(board.rows).to eq([["s"]+[""]*9] + [empty_row]*9)
+		end
 
+		it 'should populate the board with a length 1 ship starting at A10' do
+			length, row, column = 1, 0, 9
+			board.add_ship(length, row, column)
+			expect(board.rows).to eq([[""]*9 + ["s"]] + [empty_row]*9)
+		end
 
-			it 'should populate the board with a length 1 ship starting at A1' do
-				length, row, column = 1, 0, 0
-				board.add_ship(length, row, column)
-				expect(board.rows).to eq([["s"]+[""]*9] + [empty_row]*9)
-			end
+		it 'should populate the board with a length 3 ship starting at A1' do
+			length, row, column = 3, 0, 0
+			board.add_ship(length, row, column, :right)
+			expect(board.rows).to eq([["s"]*3 + [""]*7] + [empty_row]*9)
+		end
 
-			it 'should populate the board with a length 1 ship starting at A10' do
-				length, row, column = 1, 0, 9
-				board.add_ship(length, row, column)
-				expect(board.rows).to eq([[""]*9 + ["s"]] + [empty_row]*9)
-			end
+		it 'should populate the board with a length 4 vertical ship at A1' do
+			length, row, column = 4, 0, 0, :down
+			board.add_ship(length, row, column, :down)
+			expect(board.rows).to eq([["s"] + [""]*9]*4 + [empty_row]*6)
+		end
 
-			it 'should populate the board with a length 3 ship starting at A1' do
-				length, row, column = 3, 0, 0
-				board.add_ship(length, row, column, :right)
-				expect(board.rows).to eq([["s"]*3 + [""]*7] + [empty_row]*9)
-			end
+		it 'should not populate the board with a ship that goes off the board' do
+			length, row, column = 4, 9, 9
+			board.add_ship(length, row, column, :down)
+			expect(board.rows).to eq([empty_row]*10)
+		end
 
-			it 'should populate the board with a length 4 vertical ship at A1' do
-				length, row, column = 4, 0, 0, :down
-				board.add_ship(length, row, column, :down)
-				expect(board.rows).to eq([["s"] + [""]*9]*4 + [empty_row]*6)
-			end
-
-			it 'should not populate the board with a ship that goes off the board' do
-				length, row, column = 4, 9, 9
-				board.add_ship(length, row, column, :down)
-				expect(board.rows).to eq([empty_row]*10)
-			end
-
-			it 'should add a ship if fits given the direction' do 
-				length, row, column = 4, 9, 0
-				board.add_ship(length, row, column, :right)
-				expect(board.rows).to eq([empty_row]*9 + [["s"]*4 + [""]*6])
-			end
-
+		it 'should add a ship if fits given the direction' do 
+			length, row, column = 4, 9, 0
+			board.add_ship(length, row, column, :right)
+			expect(board.rows).to eq([empty_row]*9 + [["s"]*4 + [""]*6])
 		end
 
 		it 'should return true if it populates the board with a length 1 ship starting at A1' do
