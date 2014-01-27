@@ -9,4 +9,12 @@ describe Board do
 		board.owner
 	end
 
+	it 'should return nil if shot is not valid' do
+		expect(board.register_shot("Z1")).to be_false
+	end
+
+	it 'should return true if shot is  valid' do
+		expect(board.register_shot("A1")).to be_true
+	end
+
 end

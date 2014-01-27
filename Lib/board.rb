@@ -11,7 +11,11 @@ class Board
 	end
 
 	def register_shot at_coordinates
-		
+		if ("A".."J").to_a.include?(at_coordinates[0])
+			true
+		else
+			false
+		end
 	end
 
 	def rows
