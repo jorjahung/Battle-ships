@@ -2,20 +2,17 @@ class Board
 
 	COLUMNS = ("A".."J").to_a
 	ROWS = (1..10).to_a
-	EMPTY_GRID = [[""]*10]*10
+	
 
 	def initialize(player)
 		@player = player
+		@rows = Array.new(10) { Array.new(10, "") }
 	end
 
 	attr_reader :player
 
 	def owner
 		player.name
-	end
-
-	def grid
-		GRID
 	end
 
 	def register_shot at_coordinates
@@ -26,7 +23,7 @@ class Board
 	end
 
 	def rows
-		[(["s"]+[""]*9)]*10
+		@rows
 	end
 
 	def opponent_view
@@ -34,8 +31,7 @@ class Board
 	end
 
 	def add_ship(length, row, column)
-
-
+		@rows[row-1][column-1] = "s"
 	end
 
 

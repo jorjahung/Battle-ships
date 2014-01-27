@@ -26,7 +26,6 @@ describe Board do
 	end
 
 	context "Populating player board" do
-		
 
 		it 'should populate the board with a length 1 ship starting at A1' do
 			length, row, column = 1, 1, 1
