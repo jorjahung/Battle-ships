@@ -81,6 +81,19 @@ end
 			expect(board.rows).to eq([empty_row]*9 + [["s"]*4 + [""]*6])
 		end
 
+		it 'should return true if it populates the board with a length 1 ship starting at A1' do
+			length, row, column = 1, 0, 0
+			expect(board.add_ship(length, row, column)).to be_true
+		end
+
+		it 'should add a ship if fits given the direction' do 
+			length, row, column = 4, 9, 0
+			board.add_ship(length, row, column, :right)
+			length, row, column = 3, 7, 0
+			board.add_ship(length, row, column, :down)
+			expect(board.rows).to eq([empty_row]*9 + [["s"]*4 + [""]*6])
+		end
+
 
 	end
 
