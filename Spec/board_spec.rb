@@ -25,4 +25,9 @@ describe Board do
 		expect(board.register_shot("c9")).to be_true
 	end
 
+	it 'should initialize with an empty board' do 
+		expect(board.grid).to eq([[""]*10]*10)
+		
+	end
+
 end

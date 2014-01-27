@@ -2,6 +2,7 @@ class Board
 
 	COLUMNS = ("A".."J").to_a
 	ROWS = (1..10).to_a
+	GRID = [[""]*10]*10
 
 	def initialize(player)
 		@player = player
@@ -11,6 +12,10 @@ class Board
 
 	def owner
 		player.name
+	end
+
+	def grid
+		GRID
 	end
 
 	def register_shot at_coordinates
