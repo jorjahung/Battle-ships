@@ -69,6 +69,18 @@ end
 			expect(board.rows).to eq([["s"] + [""]*9]*4 + [empty_row]*6)
 		end
 
+		it 'should not populate the board with a ship that goes off the board' do
+			length, row, column = 4, 9, 9
+			board.add_ship(length, row, column, :down)
+			expect(board.rows).to eq([empty_row]*10)
+		end
+
+		it 'should add a ship if fits given the direction' do 
+			length, row, column = 4, 9, 0
+			board.add_ship(length, row, column, :right)
+			expect(board.rows).to eq([empty_row]*9 + [["s"]*4 + [""]*6])
+		end
+
 
 	end
 
