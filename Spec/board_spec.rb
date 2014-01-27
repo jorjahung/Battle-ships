@@ -37,7 +37,7 @@ describe Board do
 		it "Opponent's board should not show the S but show the X/O" do
 			length, row, column = 1, 1, 1
 			board.add_ship(length, row, column)
-			board.register_shot(A1)
+			board.register_shot("A1")
 			expect(board.opponent_view).to eq([["x"] + [""]*9] + [empty_row]*9)
 		end
 
