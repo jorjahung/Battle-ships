@@ -2,7 +2,6 @@ require './lib/player'
 
 describe Player do
 	let(:player) {Player.new("Myname")}
-	#let(:board) {Board.new(player)}
 
 	it "is initialized with its name" do
 		player = Player.new("Myname")
@@ -14,12 +13,11 @@ describe Player do
 	end
 
 	it "should have ships still floating when created" do
-		Board.any_instance.stub(:rows => Array.new(100, 's'))
 		expect(player).to have_ships_still_floating
 	end
 
 	it "should not have ships still floating when all down" do
-		Board.any_instance.stub(:rows => Array.new(100, 'x'))
+		Board.any_instance.stub(:rows => Array.new())
 		expect(player).not_to have_ships_still_floating
 	end
 

@@ -116,6 +116,16 @@ end
 			expect(board.add_ship(length, row, column, :down)).to be_false
 		end
 
+		it "A new board should have 17 ship parts" do
+			board.populate_board
+			expect(board.rows.flatten.count("s")).to eq(17)
+		end
+
+
+
+
+
+
 
 	end
 

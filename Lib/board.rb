@@ -2,6 +2,9 @@ class Board
 
 	COLUMNS = ("A".."J").to_a
 	ROWS = (1..10).to_a
+	SHIP_SIZES = [5,4,3,3,2]
+	COORDS = (0..9).to_a
+	ORIENTATIONS = [:right, :down]
 	
 
 	def initialize(player)
@@ -9,34 +12,37 @@ class Board
 		@rows = Array.new(10) { Array.new(10, "") }
 	end
 
-	attr_reader :player
+	attr_reader :player, :rows
 
 	def owner
 		player.name
 	end
 
-	def register_shot at_coordinates
-		row, col = at_coordinates[1,2].to_i, at_coordinates[0].upcase
-		return false unless COLUMNS.include?(col) && ROWS.include?(row)
+	def register_shot(at_coordinates)
+		number, letter = at_coordinates[1,2].to_i, at_coordinates[0].upcase
+		return false unless COLUMNS.include?(letter) && ROWS.include?(number)
 
-		column = COLUMNS.index(col)
-		row = ROWS.index(row)
-		@rows[row][column] == "s" || @rows[row][column] == "x"?	@rows[row][column] = "x" : @rows[row][column] = "o"
-
-	end
-
-	def rows
-		@rows
+		row, col = ROWS.index(number), COLUMNS.index(letter)
+		@rows[row][col] = !!@rows[row][col][/[xs]/] ? "x" : "o"
 	end
 
 	def opponent_view
-		hidden = rows.map {|array| array.map {|x| x == "s" ? "" : x }}
+		rows.map {|array| array.map {|x| x == "s" ? "" : x }}
+	end
+
+	def populate_board
+		SHIP_SIZES.each do |length|
+			ship_placed = false
+			while !ship_placed
+				ship_placed = add_ship(length, COORDS.sample, COORDS.sample, ORIENTATIONS.sample)
+			end
+		end
 	end
 
 	def add_ship(length, row, column, direction=:right)
 		test_row, test_column = row, column
 		maximum = (direction == :right) ? column + length : row + length
-		return false if maximum > 10
+		return false if maximum > ROWS.last
 
 		length.times do
 			return false if @rows[test_row][test_column] == "s"
@@ -48,7 +54,5 @@ class Board
 			(direction == :right) ? column += 1 : row += 1
 		end
 	end
-
-
 
 end
