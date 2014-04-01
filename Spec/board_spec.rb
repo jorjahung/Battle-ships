@@ -1,4 +1,4 @@
-require './Lib/board'
+require './lib/board'
 
 describe Board do
 		let(:player) { double :player }
